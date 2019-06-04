@@ -21,22 +21,22 @@ data = json.loads(open("guitar.json").read())
 """
 	
 def print_chord(chord):
-	frets = [5, 7, 7, 5, 5, 5]
-	fingers = [1, 3, 4, 1, 1, 1]
+	frets = [0, 2, 2, 1, 0, 0]
+	fingers = [-1, 3, 4, 1, -1, -1]
 	base_fret = min((f for f in frets if f > 0))
 
 	data = []
 	
-	for j in range(1, 7):
+	for fret in range(base_fret, base_fret+6):
 		data.append([])
-		for i in range(1,7):
-			if frets[i-1] == j:
-				if fingers[i-1] != 0:
-					data[j-1].append(fingers[i-1])
+		for string in range(1,7):
+			if frets[string-1] == fret and fingers[string-1] != -1:
+				data[fret-base_fret].append(fingers[string-1])
 			else:
-				data[j-1].append(-1)
+				data[fret-base_fret].append(-1)
 	
-	print data
+	for i in data:
+		print i
 			
 	1/0
 	
